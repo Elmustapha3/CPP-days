@@ -17,41 +17,32 @@
 int main()
 {
 
-	const Cat a;
-	a.makeSound();
+	// const Cat a;
+	// a.makeSound();
+
+	// Animal *b = new Cat(a);
+	// b->makeSound();
+	// delete b;
 
 
+	const Animal *an[6];
+	for (int i = 0; i < 6; i++)
+	{
+		if(i % 2 == 0)
+			an[i] = new Dog();
+		else
+			an[i] = new Cat();
+	}
 
+	std::cout << std:: endl << std::endl;
 
-	Animal *b = new Cat(a);
-	b->makeSound();
-	// std::cout << " add : " << b->getB() << std::endl;
-	delete b;
+    for (int i = 0; i < 6; i++)
+	    an[i]->makeSound();
 
+    std::cout << std:: endl << std::endl;
 
-
-
-
-
-
-	// const Animal *an[6];
-	// for (int i = 0; i < 6; i++)
-	// {
-	// 	if(i % 2 == 0)
-	// 		an[i] = new Dog();
-	// 	else
-	// 		an[i] = new Cat();
-	// }
-
-	// std::cout << std:: endl << std::endl;
-
-    // for (int i = 0; i < 6; i++)
-	//     an[i]->makeSound();
-
-    // std::cout << std:: endl << std::endl;
-
-	// for (int i = 0; i < 6; i++)
-	// 	delete an[i];
+	for (int i = 0; i < 6; i++)
+		delete an[i];
 
 
 	return 0;

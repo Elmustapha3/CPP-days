@@ -2,7 +2,7 @@ NAME = interface
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = AMateria.cpp ICharacter.cpp Character.cpp Ice.cpp Cure.cpp \
 	IMateriaSource.cpp MateriaSource.cpp main.cpp
