@@ -21,11 +21,9 @@ Character::Character(){
 	{
 		this->am[i] = NULL;
 	}
-	std::cout << "Character default constructor called" << std::endl;
 }
 
 Character::Character(std::string name){
-	std::cout << "Character parametrized constructor called" << std::endl;
 		this->ad = NULL;
 	for (int i = 0; i < 4; i++)
 	{
@@ -36,32 +34,24 @@ Character::Character(std::string name){
 
 
 Character::Character(const Character& c){
-	std::cout << "Character copy constructor called" << std::endl;
 	for (int i = 0; i < 4; i++){
-		if(c.am[i] && c.am[i]->getType() == "ice")
-			this->am[i] = new Ice();
-		if(c.am[i] && c.am[i]->getType() == "cure")
-			this->am[i] = new Cure();
+		if(c.am[i])
+			this->am[i] = c.am[i]->clone();
+		else
+			this->am[i] = NULL;
 	}
+	*this->am = *c.am;
 }
 
 Character& Character::operator=(const Character& c){
-	std::cout << "Character copy assignment operator called" << std::endl;
 	if (this == &c)
         return *this;
-	for (int i = 0; i < 4; i++){
-		if(c.am[i]->getType() == "ice")
-			this->am[i] = new Ice();
-		if(c.am[i]->getType() == "cure")
-			this->am[i] = new Cure();
-	}
+	*this->am = *c.am;
 	return *this;
 }
 
 
 Character::~Character(){
-	std::cout << "Character desctructor called" << std::endl;
-
 	for (int i = 0; i < 4; i++)
 	{
 		if(this->am[i]){

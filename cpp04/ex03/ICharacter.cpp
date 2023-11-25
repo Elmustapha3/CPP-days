@@ -14,5 +14,4 @@
 #include "ICharacter.hpp"
 
 ICharacter::~ICharacter(){
-	std::cout << "ICharacter dessctructor called" << std::endl;
 }

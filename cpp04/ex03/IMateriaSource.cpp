@@ -14,7 +14,6 @@
 #include "IMateriaSource.hpp"
 
 IMateriaSource::~IMateriaSource(){
-	std::cout << "IMateriaSource desctructor called" << std::endl;
 }
 
 

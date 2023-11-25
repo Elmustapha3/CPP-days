@@ -15,23 +15,19 @@
 #include "ICharacter.hpp"
 
 Cure::Cure(){
-	std::cout << "Cure default constructor called" << std::endl;
 	this->type = "cure";
 }
 
 Cure::Cure(const Cure& c):AMateria(c){
-	std::cout << "Cure copy constructor called" << std::endl;
 }
 
 Cure& Cure::operator=(const Cure& c){
-	std::cout << "Cure copy assignment operator called" << std::endl;
 	if (this == &c)
         return *this;
 	return *this;
 }
 
 Cure::~Cure(){
-	std::cout << "Cure destructor called" << std::endl;
 }
 
 AMateria* Cure::clone() const{

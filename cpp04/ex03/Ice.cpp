@@ -15,23 +15,19 @@
 #include "ICharacter.hpp"
 
 Ice::Ice(){
-	std::cout << "Ice default constructor called" << std::endl;
 	this->type = "ice";
 }
 
 Ice::Ice(const Ice& ice):AMateria(ice){
-	std::cout << "Ice copy constructor called" << std::endl;
 }
 
 Ice& Ice::operator=(const Ice& ice){
-	std::cout << "Ice copy assignment operator called" << std::endl;
 	if (this == &ice)
         return *this;
 	return *this;
 }
 
 Ice::~Ice(){
-	std::cout << "Ice Destructor called" << std::endl;
 }
 
 AMateria* Ice::clone() const{

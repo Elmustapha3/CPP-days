@@ -15,38 +15,29 @@
 #include "Cure.hpp"
 
 MateriaSource::MateriaSource(){
-	std::cout << "MateriaSource default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->am[i] = NULL;
-
-
 }
 
 MateriaSource::MateriaSource(const MateriaSource& ms){
-	std::cout << "MateriaSource copy constructor called" << std::endl;
-	for (int i = 0; i < 4; i++){
-		if(ms.am[i]->getType() == "ice")
-			this->am[i] = new Ice();
-		if(ms.am[i]->getType() == "cure")
-			this->am[i] = new Cure();
+	for (int i = 0; i < 4; i++)
+	{
+		if(ms.am[i])
+			this->am[i] = ms.am[i]->clone();
+		else
+			this->am[i] = NULL;
 	}
+	*this->am = *ms.am; 
 }
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& ms){
-	std::cout << "MateriaSource copy assignment operator called" << std::endl;
 	if (this == &ms)
         return *this;
-	for (int i = 0; i < 4; i++){
-		if(ms.am[i]->getType() == "ice")
-			this->am[i] = new Ice();
-		if(ms.am[i]->getType() == "cure")
-			this->am[i] = new Cure();
-	}
+	*this->am = *ms.am; 
 	return *this;
 }
 
 MateriaSource::~MateriaSource(){
-	std::cout << "MateriaSource constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if(this->am[i])

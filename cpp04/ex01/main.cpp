@@ -14,7 +14,7 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-int main()
+int main1()
 {
 
 	// const Cat a;
@@ -25,25 +25,33 @@ int main()
 	// delete b;
 
 
-	const Animal *an[6];
-	for (int i = 0; i < 6; i++)
-	{
-		if(i % 2 == 0)
-			an[i] = new Dog();
-		else
-			an[i] = new Cat();
-	}
+	// const Animal *an[6];
+	// for (int i = 0; i < 6; i++)
+	// {
+	// 	if(i % 2 == 0)
+	// 		an[i] = new Dog();
+	// 	else
+	// 		an[i] = new Cat();
+	// }
 
-	std::cout << std:: endl << std::endl;
+	// std::cout << std:: endl << std::endl;
 
-    for (int i = 0; i < 6; i++)
-	    an[i]->makeSound();
+    // for (int i = 0; i < 6; i++)
+	//     an[i]->makeSound();
 
-    std::cout << std:: endl << std::endl;
+    // std::cout << std:: endl << std::endl;
 
-	for (int i = 0; i < 6; i++)
-		delete an[i];
 
+	// for (int i = 0; i < 6; i++)
+	// 	delete an[i];
+	Dog a;
+	Dog  b;
+	b = a;
 
 	return 0;
+}
+int main()
+{
+	main1();
+	system("leaks poly");
 }

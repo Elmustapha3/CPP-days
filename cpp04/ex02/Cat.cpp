@@ -31,7 +31,6 @@ Cat& Cat::operator=(const Cat& c){
     std::cout << "Cat copy assignment constructor called" << std::endl;
     if (this == &c)
         return *this;
-    this->brain = new Brain();
     this->type = c.type;
     *this->brain = *c.brain;
     return *this;

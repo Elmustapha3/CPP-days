@@ -17,7 +17,7 @@
 #include "Character.hpp"
 
 
-int main()
+int main2()
 {
 
     // const Character a;
@@ -66,4 +66,16 @@ int main()
     delete me;
     delete src;
     return 0;
+}
+void ma()
+{
+    MateriaSource a;
+    MateriaSource ab(a);
+    // (void)ab;
+}
+int main()
+{
+    
+    ma();
+    // system("leaks interface");
 }
