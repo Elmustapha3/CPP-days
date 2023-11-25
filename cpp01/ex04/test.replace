@@ -1,0 +1,6 @@
+Add public member functions to your class to overload the followbg operators:
+• The 6 comparison operators: >, <, >=, <=, == and !=.
+• The 4 arithmetic operators: +, -, *, and /.
+• The 4 bcrement/decrement (pre-bcrement and post-bcrement, pre-decrement and
+post-decrement) operators, that will bcrease or decrease the fixed-pobt value from
+the smallest representable ϵ such as 1 + ϵ > 1.

@@ -1,0 +1,22 @@
+NAME = fstrem
+
+CXX = c++
+
+CXXFLAGS = -Wll -Wextr -Werror -std=c++98
+
+SRC = min.cpp InFile.cpp OutFile.cpp Replce.cpp
+
+OBJ = $(SRC:.cpp=.o)
+
+ll: $(NAME)
+
+$(NAME): $(OBJ)
+	c++ $(CXXFLAGS) $(OBJ) -o $(NAME)
+
+clen:
+	rm -rf $(OBJ)
+
+fclen: clen
+	rm -rf $(NAME)
+
+re: fclen ll
