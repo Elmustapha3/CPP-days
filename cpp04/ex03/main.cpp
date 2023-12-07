@@ -17,44 +17,13 @@
 #include "Character.hpp"
 
 
-int main2()
+int main()
 {
-
-    // const Character a;
-    // ICharacter *b = new Character(a);
-    // (void)b;
-
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-
-    
     ICharacter* me = new Character("me");
     AMateria* tmp;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
     tmp = src->createMateria("ice");
     me->equip(tmp);
     tmp = src->createMateria("cure");
@@ -66,16 +35,4 @@ int main2()
     delete me;
     delete src;
     return 0;
-}
-void ma()
-{
-    MateriaSource a;
-    MateriaSource ab(a);
-    // (void)ab;
-}
-int main()
-{
-    
-    ma();
-    // system("leaks interface");
 }
