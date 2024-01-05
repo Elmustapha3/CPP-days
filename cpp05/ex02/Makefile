@@ -4,7 +4,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 CPP = c++
 
-SRC = main.cpp Bureaucrat.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

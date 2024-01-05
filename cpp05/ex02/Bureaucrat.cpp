@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:12:43 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/05 12:19:17 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:48:04 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(){
     
@@ -55,4 +56,11 @@ std::string Bureaucrat::getName() const{
 std::ostream &operator<<(std::ostream &out, Bureaucrat b){
     out << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;
     return out;
+}
+
+void Bureaucrat::signForm(const Form& f){
+    if(f.getSigned())
+        std::cout << this->name << " signed " << f.getName() << std::endl;
+    else
+        std::cout << this->name << " couldn't sign " << f.getName() << " Because " << "add a reason" << std::endl;
 }
