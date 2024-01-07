@@ -6,12 +6,12 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:12:43 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/05 17:48:04 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/07 15:04:14 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(){
     
@@ -58,9 +58,18 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat b){
     return out;
 }
 
-void Bureaucrat::signForm(const Form& f){
+void Bureaucrat::signForm(const AForm& f){
     if(f.getSigned())
         std::cout << this->name << " signed " << f.getName() << std::endl;
     else
         std::cout << this->name << " couldn't sign " << f.getName() << " Because " << "add a reason" << std::endl;
+}
+
+void Bureaucrat::executeForm(const AForm& f){
+    try{
+        f.execute(*this);
+        std::cout << this->name << " executed " << f.getName() << std::endl;
+    }catch(std::exception& e){
+        std::cout << e.what() << std::endl;
+    }
 }

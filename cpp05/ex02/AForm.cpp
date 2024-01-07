@@ -6,15 +6,15 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:16:30 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/05 20:39:47 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/07 14:57:03 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form():name("Unknow"), grade_to_s(10), grade_to_ex(10){}
+AForm::AForm():name("Unknow"), grade_to_s(10), grade_to_ex(10){}
 
-Form::Form(std::string name, int grade_to_s, int grade_to_ex):name(name), grade_to_s(grade_to_s), grade_to_ex(grade_to_ex){
+AForm::AForm(std::string name, int grade_to_s, int grade_to_ex):name(name), grade_to_s(grade_to_s), grade_to_ex(grade_to_ex){
     if(grade_to_ex < 1 || grade_to_s < 1)
         throw GradeTooHighException();
     if(grade_to_ex > 150 || grade_to_s > 150)
@@ -22,7 +22,7 @@ Form::Form(std::string name, int grade_to_s, int grade_to_ex):name(name), grade_
     this->Signed = false;
 }
 
-Form::Form(const Form& f):name(f.name), grade_to_s(f.grade_to_s), grade_to_ex(f.grade_to_ex){
+AForm::AForm(const AForm& f):name(f.name), grade_to_s(f.grade_to_s), grade_to_ex(f.grade_to_ex){
     if(grade_to_ex < 1 || grade_to_s < 1)
         throw GradeTooHighException();
     if(grade_to_ex > 150 || grade_to_s > 150)
@@ -30,34 +30,39 @@ Form::Form(const Form& f):name(f.name), grade_to_s(f.grade_to_s), grade_to_ex(f.
     this->Signed = f.Signed;
 }
 
-Form& Form::operator=(const Form& f){
+AForm& AForm::operator=(const AForm& f){
     this->Signed = f.Signed;
     return *this;
 }
 
-Form::~Form(){}
+AForm::~AForm(){}
 
-std::string Form::getName() const{
+std::string AForm::getName() const{
     return this->name;
 }
 
-int Form::getGradeS() const{
+int AForm::getGradeS() const{
     return this->grade_to_s;
 }
 
-int Form::getGradeEx() const{
+int AForm::getGradeEx() const{
     return this->grade_to_ex;
 }
-bool Form::getSigned() const{
+bool AForm::getSigned() const{
     return this->Signed;
 }
 
-void Form::beSigned(Bureaucrat& b){
+void AForm::beSigned(Bureaucrat& b){
     if(b.getGrade() <= this->grade_to_s)
-        this->Signed = true;0
+        this->Signed = true;
 }
 
-std::ostream& Form::operator<<(std::ostream& out, Form& f){
-    out << f.getName() << ", Form has " << f.getGradeS() << "grade required to signed and " << f.getGradeEx() << " grade required ti executed and its signature status is " << f.getSigned() << stdt::endl;
+std::ostream& operator<<(std::ostream& out, AForm& f){
+    out << f.getName() << ", Form has " << f.getGradeS() << "grade required to signed and " << f.getGradeEx() << " grade required ti executed and its signature status is " << f.getSigned() << std::endl;
     return out;
 }
+
+// void AForm::execute(Bureaucrat const & executor){
+//     (void)executor;
+//     std::cout << "execute base class function" << std::endl;
+// }

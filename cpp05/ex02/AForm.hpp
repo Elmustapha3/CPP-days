@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:24:54 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/05 20:24:32 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/07 14:20:33 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
-class Form {
+class AForm {
     private:
         const std::string name;
         bool Signed;
@@ -35,18 +35,19 @@ class Form {
                     return "grade form too hight";
                 }  
         };
-        Form();
-        Form(std::string name, int grade_to_s, int grade_to_ex);
-        Form(const Form& f);
-        Form& operator=(const Form& f);
-        ~Form();
+        AForm();
+        AForm(std::string name, int grade_to_s, int grade_to_ex);
+        AForm(const AForm& f);
+        AForm& operator=(const AForm& f);
+        ~AForm();
         std::string getName()const;
         int getGradeS() const;
         int getGradeEx() const;
         bool getSigned() const;
         void beSigned(Bureaucrat& b);
+        virtual void execute(Bureaucrat const & executor) = 0;
 };
 
-std::ostream& operator<<(std::ostream& out, Form& f);
+std::ostream& operator<<(std::ostream& out, AForm& f);
 
 #endif
