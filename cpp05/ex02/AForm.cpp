@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:16:30 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/07 14:57:03 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/08 00:51:03 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ bool AForm::getSigned() const{
     return this->Signed;
 }
 
-void AForm::beSigned(Bureaucrat& b){
+void AForm::beSigned(const Bureaucrat& b){
     if(b.getGrade() <= this->grade_to_s)
         this->Signed = true;
+    else
+        throw GradeTooLowException();
 }
 
 std::ostream& operator<<(std::ostream& out, AForm& f){

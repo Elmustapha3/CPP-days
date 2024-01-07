@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:12:43 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/07 15:04:14 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/08 00:54:54 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade): name(name){
         throw Bureaucrat::GradeTooLowException();
     this->grade = grade;
 }
+
 Bureaucrat::Bureaucrat(const Bureaucrat& b): name(b.name){
     this->grade = b.grade;
 }
+
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& b){
     this->grade = b.grade;
     return *this;
@@ -58,14 +60,20 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat b){
     return out;
 }
 
-void Bureaucrat::signForm(const AForm& f){
-    if(f.getSigned())
+void Bureaucrat::signForm(AForm& f)
+{
+    
+    try{
+        f.beSigned(*this);
         std::cout << this->name << " signed " << f.getName() << std::endl;
-    else
-        std::cout << this->name << " couldn't sign " << f.getName() << " Because " << "add a reason" << std::endl;
+    }catch(std::exception& e)
+    {
+        std::cout << this->name << " couldn't sign " << f.getName() << " Because :" << e.what() << std::endl;
+        
+    }
 }
 
-void Bureaucrat::executeForm(const AForm& f){
+void Bureaucrat::executeForm( AForm const &f){
     try{
         f.execute(*this);
         std::cout << this->name << " executed " << f.getName() << std::endl;

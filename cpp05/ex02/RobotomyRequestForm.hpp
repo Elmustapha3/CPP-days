@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:03:55 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/07 14:22:01 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/08 00:31:18 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class RobotomyRequestForm: public AForm{
         RobotomyRequestForm(const RobotomyRequestForm& rf);
         RobotomyRequestForm& operator=(const RobotomyRequestForm& rf);
         ~RobotomyRequestForm();
-        void execute(Bureaucrat const & executor);
+        void execute(Bureaucrat const & executor) const;
 };
 
 #endif

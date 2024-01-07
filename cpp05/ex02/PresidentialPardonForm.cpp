@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:28:00 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/07 14:57:53 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/08 00:36:08 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target):AForm(target,
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& sf):AForm(sf.getName(), 72, 45){
 }
 
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& sf):AForm(sf.getName(), 72, 45){
-    retrun *this;
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& sf){
+    (void)sf;
+    return *this;
 }
 PresidentialPardonForm::~PresidentialPardonForm(){
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const & executor){
+void PresidentialPardonForm::execute(Bureaucrat const & executor)const{
     if(this->getSigned() && executor.getGrade() <= this->getGradeEx()){
-        std::cout << this->getName() >> " has been pardoned by Zaphod Beeblebrox" << std::endl;
+        std::cout << this->getName() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
     }
     else
         throw GradeTooLowException();

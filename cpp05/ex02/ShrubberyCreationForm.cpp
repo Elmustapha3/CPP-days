@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:08:12 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/07 14:58:21 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/08 00:30:22 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm(){
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor){
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
     if(this->getSigned() && executor.getGrade() <= this->getGradeEx()){
         std::ofstream file;
         file.open(this->getName()+"_shrubbery");

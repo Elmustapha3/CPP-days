@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:18:39 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/07 12:44:27 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/08 00:55:01 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class Bureaucrat {
         std::string getName() const;
         void incrementGrade();
         void decrementGrade();
-        void signForm(const AForm& f);
+        void signForm(AForm& f);
         void executeForm(const AForm& f);
 };
 

@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:24:54 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/07 14:20:33 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/08 00:51:22 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ class AForm {
         class GradeTooLowException: public std::exception {
             public:
                 const char* what() const throw(){
-                    return "grade form too low";
+                    return "grade too low";
                 }
         };
         class GradeTooHighException: public std::exception {
             public:
                 const char* what() const throw(){
-                    return "grade form too hight";
+                    return "grade too hight";
                 }  
         };
         AForm();
@@ -44,8 +44,8 @@ class AForm {
         int getGradeS() const;
         int getGradeEx() const;
         bool getSigned() const;
-        void beSigned(Bureaucrat& b);
-        virtual void execute(Bureaucrat const & executor) = 0;
+        void beSigned(const Bureaucrat& b);
+        virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
 std::ostream& operator<<(std::ostream& out, AForm& f);

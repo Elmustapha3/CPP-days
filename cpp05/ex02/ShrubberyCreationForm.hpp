@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:14:28 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/07 14:50:45 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/08 00:31:43 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class ShrubberyCreationForm: public AForm{
         ShrubberyCreationForm(const ShrubberyCreationForm& sf);
         ShrubberyCreationForm& operator=(const ShrubberyCreationForm& sf);
         ~ShrubberyCreationForm();
-        void execute(Bureaucrat const & executor);
+        void execute(Bureaucrat const & executor) const;
 };
 
 #endif
