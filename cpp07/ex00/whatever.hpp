@@ -1,15 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   B.cpp                                              :+:      :+:    :+:   */
+/*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/16 17:03:36 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/16 17:03:52 by eej-jama         ###   ########.fr       */
+/*   Created: 2024/01/16 17:53:03 by eej-jama          #+#    #+#             */
+/*   Updated: 2024/01/16 18:04:13 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "B.hpp"
+#ifndef WHATEVER_HPP
+# define WHATEVER_HPP
 
-B::~B(){};
+#include <iostream>
+
+template <typename T> void swap(T &x, T &y){
+    T tmp;
+    tmp = x;
+    x = y;
+    y = tmp;
+}
+
+template <typename T> T min(T x, T y){
+    if(x < y)
+        return x;
+    else
+        return y;
+}
+
+template <typename T> T max(T x, T y){
+    if(x > y)
+        return x;
+    else
+        return y;
+}
+
+#endif

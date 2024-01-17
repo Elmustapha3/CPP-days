@@ -6,15 +6,18 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:16:41 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/15 19:16:52 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:06:01 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef C_HPP
 # define C_HPP
 
+#include "Base.hpp"
+
 class C: public Base{
-    
-}
+    public:
+        ~C();    
+};
 
 #endif

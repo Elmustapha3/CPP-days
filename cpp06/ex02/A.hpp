@@ -6,15 +6,18 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 19:15:21 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/15 19:16:05 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:05:33 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef A_HPP
 # define A_HPP
 
+#include "Base.hpp"
 class A: public Base{
+    public:
+        ~A();
     
-}
+};
 
 #endif
