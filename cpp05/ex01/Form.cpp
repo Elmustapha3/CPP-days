@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:16:30 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/20 11:27:32 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:50:17 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ Form& Form::operator=(const Form& f){
 }
 
 Form::~Form(){}
+
+const char* Form::GradeTooLowException::what() const throw(){
+    return "grade form too low";
+}
+
+const char* Form::GradeTooHighException::what() const throw(){
+    return "grade form too high";
+}
 
 std::string Form::getName() const{
     return this->name;

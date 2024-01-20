@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:01:12 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/05 12:19:11 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:47:12 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(){
     try {
-        Bureaucrat b("b1", 0);
+        Bureaucrat b("b1", 5);
         std::cout << b ;
     }catch(std::exception& e)
     {

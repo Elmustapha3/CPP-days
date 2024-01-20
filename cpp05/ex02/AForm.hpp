@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:24:54 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/20 13:29:02 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:49:32 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,11 @@ class AForm {
     public:
         class GradeTooLowException: public std::exception {
             public:
-                const char* what() const throw(){
-                    return "grade form too low";
-                }
+                const char* what() const throw();
         };
         class GradeTooHighException: public std::exception {
             public:
-                const char* what() const throw(){
-                    return "grade form too hight";
-                }
+                const char* what() const throw();
         };
         AForm();
         AForm(std::string name, int grade_to_s, int grade_to_ex);

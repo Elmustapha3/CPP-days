@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:12:43 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/20 11:20:30 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:51:35 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& b){
 }
 
 Bureaucrat::~Bureaucrat(){}
+
+
+const char* Bureaucrat::GradeTooLowException::what() const throw(){
+    return "grade bureaucrat too low";
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw(){
+    return "grade bureaucrat too high";
+}
 
 int Bureaucrat::getGrade() const{
     return this->grade;
