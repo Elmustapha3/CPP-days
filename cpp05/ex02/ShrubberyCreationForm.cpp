@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 12:08:12 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/08 00:30:22 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 11:58:52 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ShrubberyCreationForm::ShrubberyCreationForm():AForm("", 145, 137){
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target):AForm(target, 145, 137){  
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target):AForm(target, 145, 137){
 }
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& sf):AForm(sf.getName(), 145, 137){
 }
@@ -30,7 +30,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(){
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
     if(this->getSigned() && executor.getGrade() <= this->getGradeEx()){
         std::ofstream file;
-        file.open(this->getName()+"_shrubbery");
+        file.open((this->getName() + "_shrubbery").c_str());
         file << "       _-_" << std::endl;
         file << "    /--   --\\" << std::endl;
         file << " /--         --\\" << std::endl;
@@ -43,5 +43,5 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
         file.close();
     }
     else
-        throw GradeTooLowException();
+        throw Bureaucrat::GradeTooLowException();
 }

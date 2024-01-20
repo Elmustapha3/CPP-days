@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:12:43 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/08 00:54:54 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 12:03:05 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(){
-    
+
 }
 Bureaucrat::Bureaucrat(std::string name, int grade): name(name){
     if(grade < 1)
@@ -62,14 +62,14 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat b){
 
 void Bureaucrat::signForm(AForm& f)
 {
-    
+
     try{
         f.beSigned(*this);
         std::cout << this->name << " signed " << f.getName() << std::endl;
     }catch(std::exception& e)
     {
-        std::cout << this->name << " couldn't sign " << f.getName() << " Because :" << e.what() << std::endl;
-        
+        std::cout << this->name << " couldn't sign " << f.getName() << " Because " << e.what() << std::endl;
+
     }
 }
 
@@ -78,6 +78,7 @@ void Bureaucrat::executeForm( AForm const &f){
         f.execute(*this);
         std::cout << this->name << " executed " << f.getName() << std::endl;
     }catch(std::exception& e){
-        std::cout << e.what() << std::endl;
+        std::cout << this->name << " couldn't execute " << f.getName() << " Because " << e.what() << std::endl;
+
     }
 }

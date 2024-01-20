@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:24:54 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/08 00:51:22 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:27:26 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define FORM_HPP
 
 #include <iostream>
+#include <unistd.h>
 #include "Bureaucrat.hpp"
 
 class AForm {
@@ -33,13 +34,13 @@ class AForm {
             public:
                 const char* what() const throw(){
                     return "grade too hight";
-                }  
+                }
         };
         AForm();
         AForm(std::string name, int grade_to_s, int grade_to_ex);
         AForm(const AForm& f);
         AForm& operator=(const AForm& f);
-        ~AForm();
+        virtual ~AForm();
         std::string getName()const;
         int getGradeS() const;
         int getGradeEx() const;

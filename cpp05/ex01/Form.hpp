@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:24:54 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/05 18:01:00 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 11:24:45 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class Form {
                 const char* what() const throw(){
                     return "grade form too hight";
                     // exit(0);
-                }  
+                }
         };
         Form();
         Form(std::string name, int grade_to_s, int grade_to_ex);

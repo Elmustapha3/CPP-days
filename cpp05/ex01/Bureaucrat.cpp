@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 10:12:43 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/05 17:48:04 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 11:20:30 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Form.hpp"
 
 Bureaucrat::Bureaucrat(){
-    
+
 }
 Bureaucrat::Bureaucrat(std::string name, int grade): name(name){
     if(grade < 1)
@@ -58,9 +58,15 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat b){
     return out;
 }
 
-void Bureaucrat::signForm(const Form& f){
-    if(f.getSigned())
+void Bureaucrat::signForm(Form& f){
+    try
+    {
+        f.beSigned(*this);
         std::cout << this->name << " signed " << f.getName() << std::endl;
-    else
-        std::cout << this->name << " couldn't sign " << f.getName() << " Because " << "add a reason" << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << this->name << " couldn't sign " << f.getName() << " Because " << e.what()  << std::endl;
+    }
+
 }

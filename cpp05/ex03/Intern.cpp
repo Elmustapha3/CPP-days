@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 03:57:58 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/14 14:22:32 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:23:26 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int checkInvalidForm(std::string formName){
 
 AForm* Intern::makeForm(std::string formName, std::string target){
     if(!checkInvalidForm(formName))
-        return NULL;
+        _exit(0);
     AForm *a;
     std::string forms[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     for (int i = 0; i < 3; i++)
@@ -60,7 +60,7 @@ AForm* Intern::makeForm(std::string formName, std::string target){
                 default:
                     break;
             }
-        } 
+        }
     }
-    return a;  
+    return a;
 }
