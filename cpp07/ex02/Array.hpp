@@ -57,7 +57,7 @@ class Array {
 			return this->element[i];
 		}
 
-		const T& operator[](int i)const{
+		const T& operator[](int i) const{
 			if(i >= this->size() || i < 0)
 				throw std::runtime_error("index out of range");
 			return this->element[i];
