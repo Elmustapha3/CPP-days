@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 18:07:33 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/17 22:46:02 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/20 13:55:31 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 
 template <typename T1, typename T2>
-void iter(T1* x, int y, void(*z)(T2)){
+void iter(T1* x, int y, (*z)(T2)){
     for (int i = 0; i < y; i++)
     {
         z(x[i]);
