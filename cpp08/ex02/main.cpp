@@ -5,37 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 20:02:08 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/23 20:02:12 by eej-jama         ###   ########.fr       */
+/*   Created: 2024/01/23 11:41:12 by eej-jama          #+#    #+#             */
+/*   Updated: 2024/01/23 11:41:50 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector>
-#include "Span.hpp"
+#include <stack>
+#include <iostream>
+#include "MutantStack.hpp"
+
 int main()
 {
-	Span sp = Span(5);
-	sp.addNumber(6);
-	sp.addNumber(3);
-	sp.addNumber(17);
-	sp.addNumber(9);
-	sp.addNumber(11);
-	// int tab[] = {6, 3, 17, 9, 11};
-	// sp.addRangeOfElements(tab, 2);
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
-
-	std::cout << "----------------" << std::endl;
-
-	Span sp1 = Span(20000);
-	int tab[20000];
-	for (size_t i = 0; i < 20000; i++)
+	MutantStack<int> mstack;
+	mstack.push(5);
+	mstack.push(17);
+	std::cout << mstack.top() << std::endl;
+	mstack.pop();
+	std::cout << mstack.size() << std::endl;
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	//[...]
+	mstack.push(0);
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
 	{
-		tab[i] = i + 1;
+	std::cout << *it << std::endl;
+	++it;
 	}
+	std::stack<int> s(mstack);
 
-	sp1.addRangeOfElements(tab, 20000);
-	std::cout << sp1.shortestSpan() << std::endl;
-	std::cout << sp1.longestSpan() << std::endl;
+	// std::stack<int, std::vector<int>> s;
+
+	// std::cout << typeid(s).name() << std::endl;
+
 	return 0;
 }
