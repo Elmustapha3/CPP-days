@@ -1,10 +1,10 @@
-NAME = easy
+NAME = iterator
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 CPP = c++
 
-SRC = main.cpp 
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
