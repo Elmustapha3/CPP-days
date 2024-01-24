@@ -2,18 +2,21 @@
 #define BIT
 
 #include <iostream>
+#include <map>
+#include <fstream>
 
 class BitcoinExchange {
 	std::map<std::string, double> m;
-	std::stack<double> result;
 	public:
 		BitcoinExchange();
+		BitcoinExchange(int ac, char **av);
 		BitcoinExchange(const BitcoinExchange& btc);
 		BitcoinExchange& operator=(const BitcoinExchange& btc);
 		~BitcoinExchange();
-		void fillMap(fstream& file);
-		void calculeResult();
-		void afficheResult()
-}
+		void fillMap(std::ifstream& file);
+		void loopInInputFile(std::ifstream& file);
+		void parser(std::string line);
+		void calculeResult(std::string line);
+};
 
 #endif

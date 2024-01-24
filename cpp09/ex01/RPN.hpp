@@ -2,6 +2,7 @@
 #define RPN
 
 #include <iostream>
+#include <stack>
 
 class RPN{
 	std::stack<int> s;
