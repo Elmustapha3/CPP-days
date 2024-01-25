@@ -29,12 +29,18 @@ void BitcoinExchange::fillMap(std::ifstream& file){
 void BitcoinExchange::loopInInputFile(char *file){
 	std::ifstream inFile(file);
 	if(inFile.is_open()){
-		std::string line;
+		std::string line, date, value;
 		std::getline(inFile, line);
+		date = line.substr(0, line.find('|'));
+		value = line.substr(line.find('|') + 1, line.length());
+		if(date != "date" || value != "value")
+			throw std::runtime_error("invalid header");
 		while (std::getline(inFile, line))
 		{
 			try
 			{
+				if(line.empty())
+					continue;
 				this->parser(line);
 				this->checkValues(line);
 				this->calculeResult(line);
@@ -57,12 +63,38 @@ void checkValue(unsigned int value){
 }
 
 void checkKey(std::string& key){
-	(void)key;
+	size_t m[12] = {31, 29, 31,30,31,30,31, 31, 30, 31, 30, 31};
+	size_t year, month, day;
+	size_t a = key.find('-');
+	size_t b = key.find('-', a + 1);
+	year = atof(key.substr(0, a).c_str());
+	month = atof(key.substr(a + 1, 2).c_str());
+	day = atof(key.substr(b + 1).c_str());
+
+	if(month > 12 || month < 1)
+		throw std::runtime_error("Error : invalid month");
+	if(year > 2022 || year < 2009)
+		throw std::runtime_error("Error : invalid year");
+	if((year % 4 == 0 || (year % 400 == 0 && year % 100 == 0)) && (day > 28 || day < 1)){
+		throw std::runtime_error("Error : invalid day");
+	}
+	else if(day > m[month - 1] || day < 1)
+		throw std::runtime_error("Error : invalid day");
+
+
+
+
+	// std::cout << a << "---------" << key.find('-', a + 1) << std::endl;
+	// std::cout << '|' << year << '|' << std::endl;
+	// std::cout << '|' << month << '|' << std::endl;
+	// std::cout << '|' << day << '|' << std::endl;
+	// std::cout << month << std::endl;
+	// std::cout << day << std::endl;
+	// year = line.substr(0, line.find('-'));
 }
 
 void BitcoinExchange::checkValues(std::string& line){
-	std::string key;
-	std::string value;
+	std::string key,value;
 	key = line.substr(0, line.find('|'));
 	value = line.substr(line.find('|') + 1, line.length());
 	checkKey(key);
@@ -95,7 +127,7 @@ void BitcoinExchange::parser(std::string line){
 	}
 
 	if(line[i] != '|'){
-		throw std::runtime_error("Error: bad input =>");
+		throw std::runtime_error("Error: bad input => " + line);
 	}
 	i++;
 
@@ -103,44 +135,44 @@ void BitcoinExchange::parser(std::string line){
 		if(line[i] != ' ')
 			break;
 	if(line[i] == '-'){
-		throw std::runtime_error("Error: not a positive number. 4");
+		throw std::runtime_error("Error: not a positive number.");
 	}
 
 	size_t j;
 	for (j = i; j < line.length(); j++)
 	{
 		if(line[i] == '.')
-			throw std::runtime_error("invalid format 5");
+			throw std::runtime_error("invalid format");
 		if(line[j] == '.')
 			break;
 		if(!isdigit(line[j]))
-			throw std::runtime_error("invalid format 6");
+			throw std::runtime_error("invalid format");
 	}
 	i = j + 1;
 	for (j = i; j < line.length(); j++)
 	{
 		if(!isdigit(line[j])){
-			throw std::runtime_error("invalid format 7");
+			throw std::runtime_error("invalid format");
 		}
 	}
 
 }
 
 void BitcoinExchange::calculeResult(std::string line){
-	std::string key;
-	std::string value;
-	key = line.substr(0, line.find('|'));
+	std::string key, value;
+	key = line.substr(0, line.find(' '));
 	value = line.substr(line.find('|') + 1, line.length());
 
 	std::map<std::string, double>::iterator it, lower;
 	it = this->m.find(key);
 	if(it == this->m.end()){
-		lower = this->m.lower_bound(key);
-		std::cout << lower->first << " => " << lower->second << " = " << lower->second * atof(value.c_str()) << std::endl;
+		lower = this->m.upper_bound(key);
+		lower--;
+		std::cout << key << " => " << value << " = " << lower->second * atof(value.c_str()) << std::endl;
 	}
 	else{
 
-		std::cout << it->first << " => " << it->second << " = " << it->second * atof(value.c_str()) << std::endl;
+		std::cout << key << " => " << value << " = " << it->second * atof(value.c_str()) << std::endl;
 	}
 
 }
