@@ -1,19 +1,23 @@
 #ifndef RPN_HPP
-#define RPN
+#define RPN_HPP
 
 #include <iostream>
 #include <stack>
+#include <cstring>
+#include <cstdlib>
 
-class RPN{
+
+class Rpn{
 	std::stack<int> s;
 	public:
-		RPN();
-		RPN(int ac, char **av);
-		RPN(const RPN& rpn);
-		RPN& operator=(const RPN& rpn);
-		void parse(int ac, char **av);
-		void calcule(int ac, char **av);
-		~RPN();
+		Rpn();
+		Rpn(char **av);
+		Rpn(const Rpn& Rpn);
+		Rpn& operator=(const Rpn& Rpn);
+		// void execute(char **av);
+		void parser(char *av);
+		void calcule(const char *av);
+		~Rpn();
 };
 
 #endif

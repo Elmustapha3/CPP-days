@@ -1,10 +1,10 @@
-NAME = easy
+NAME = PmergeMe
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 CPP = c++
 
-SRC = main.cpp
+SRC = main.cpp PmergeMe.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
