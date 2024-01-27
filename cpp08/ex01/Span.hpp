@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:02:23 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/23 20:02:25 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/27 17:37:45 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class Span {
 		int shortestSpan();
 		int longestSpan();
 		void addRangeOfElements(int *tab, size_t s);
-
 };
 
 

@@ -14,7 +14,6 @@ class Rpn{
 		Rpn(char **av);
 		Rpn(const Rpn& Rpn);
 		Rpn& operator=(const Rpn& Rpn);
-		// void execute(char **av);
 		void parser(char *av);
 		void calcule(const char *av);
 		~Rpn();

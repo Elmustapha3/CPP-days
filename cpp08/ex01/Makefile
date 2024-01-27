@@ -1,6 +1,6 @@
-NAME = easy
+NAME = span
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 CPP = c++
 

@@ -6,7 +6,7 @@
 /*   By: eej-jama <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:02:16 by eej-jama          #+#    #+#             */
-/*   Updated: 2024/01/23 20:02:21 by eej-jama         ###   ########.fr       */
+/*   Updated: 2024/01/27 17:52:50 by eej-jama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ Span& Span::operator=(const Span& s){
 Span::~Span(){}
 
 void Span::addNumber(int a){
-	if(this->v.size() + 1 > N)
-		throw std::runtime_error("the vector not accept values any more");
+	if(this->v.size() + 1 > this->N)
+		throw std::runtime_error("the vector cannot accept values any more");
 	this->v.push_back(a);
 }
 
 int Span::shortestSpan(){
 	if(this->v.size() == 1 || this->v.empty()){
-		throw std::runtime_error("values in the vector is not enough");
+		throw std::runtime_error("No span can be found");
 	}
 
 	sort(this->v.begin(), this->v.end());
@@ -58,7 +58,7 @@ int Span::shortestSpan(){
 
 int Span::longestSpan(){
 	if(this->v.size() == 1 || this->v.empty()){
-		throw std::runtime_error("values in the vector is not enough");
+		throw std::runtime_error("No span can be found");
 	}
 	sort(this->v.begin(), this->v.end());
 	return this->v.back() - this->v[0] ;
