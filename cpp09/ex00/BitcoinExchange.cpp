@@ -8,14 +8,43 @@ BitcoinExchange::BitcoinExchange(){
 		throw std::runtime_error("cannot open the databse");
 }
 
-// BitcoinExchange::BitcoinExchange(char**av){
-// 	std::ifstream file(av[1]);
-// 	if(file.is_open()){
-// 		this->fillMap(file);
-// 	}else
-// 		throw std::runtime_error("cannot open the databse");
+BitcoinExchange::BitcoinExchange(char *file){
+	std::ifstream afile("data.csv");
+	if(afile.is_open()){
+		this->fillMap(afile);
+	}else
+		throw std::runtime_error("cannot open the databse");
+	std::ifstream inFile(file);
+	if(inFile.is_open()){
+		std::string line, date, value;
+		std::getline(inFile, line);
+		date = line.substr(0, line.find('|'));
+		date = trim(date);
+		value = line.substr(line.find('|') + 1, line.length());
+		value = trim(value);
+		if(date != "date" || value != "value")
+			throw std::runtime_error("invalid header");
+		while (std::getline(inFile, line))
+		{
+			try
+			{
+				if(line.empty())
+					continue;
+				this->parser(line);
+				this->checkValues(line);
+				this->calculeResult(line);
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+				continue;
+			}
 
-// }
+		}
+	}else
+		throw std::runtime_error("Error: could not open file.");
+
+}
 
 void BitcoinExchange::fillMap(std::ifstream& file){
 	std::string key;
@@ -32,7 +61,9 @@ void BitcoinExchange::loopInInputFile(char *file){
 		std::string line, date, value;
 		std::getline(inFile, line);
 		date = line.substr(0, line.find('|'));
+		date = trim(date);
 		value = line.substr(line.find('|') + 1, line.length());
+		value = trim(value);
 		if(date != "date" || value != "value")
 			throw std::runtime_error("invalid header");
 		while (std::getline(inFile, line))
@@ -44,7 +75,6 @@ void BitcoinExchange::loopInInputFile(char *file){
 				this->parser(line);
 				this->checkValues(line);
 				this->calculeResult(line);
-				// std::cout << line << std::endl;
 			}
 			catch(const std::exception& e)
 			{
@@ -96,7 +126,9 @@ void checkKey(std::string& key){
 void BitcoinExchange::checkValues(std::string& line){
 	std::string key,value;
 	key = line.substr(0, line.find('|'));
+	key = trim(key);
 	value = line.substr(line.find('|') + 1, line.length());
+	value = trim(value);
 	checkKey(key);
 	checkValue(atof(value.c_str()));
 
@@ -106,8 +138,9 @@ void BitcoinExchange::checkValues(std::string& line){
 
 
 
-void BitcoinExchange::parser(std::string line){
+void BitcoinExchange::parser(std::string &line){
 	int i;
+	line = trim(line);
 	for (i = 0; i < 10; i++)
 	{
 		if(i == 4|| i == 7){
@@ -161,13 +194,15 @@ void BitcoinExchange::parser(std::string line){
 void BitcoinExchange::calculeResult(std::string line){
 	std::string key, value;
 	key = line.substr(0, line.find(' '));
+	key = trim(key);
 	value = line.substr(line.find('|') + 1, line.length());
+	value = trim(value);
 
 	std::map<std::string, double>::iterator it, lower;
 	it = this->m.find(key);
 	if(it == this->m.end()){
-		lower = this->m.upper_bound(key);
-		lower--;
+		lower = this->m.lower_bound(key);
+		// lower--;
 		std::cout << key << " => " << value << " = " << lower->second * atof(value.c_str()) << std::endl;
 	}
 	else{
@@ -178,4 +213,16 @@ void BitcoinExchange::calculeResult(std::string line){
 }
 
 
-
+std::string& trim(std::string& str){
+	std::string::iterator it = str.begin();
+    while (it != str.end() && std::isspace(*it)) {
+        ++it;
+    }
+    str.erase(str.begin(), it);
+	std::string::reverse_iterator rit = str.rbegin();
+	while (rit != str.rend() && std::isspace(*rit)) {
+        rit++;
+    }
+    str.erase(rit.base(), str.end());
+	return str;
+}

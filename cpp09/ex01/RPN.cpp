@@ -16,14 +16,26 @@ bool isAr(char c){
 }
 
 void Rpn::parser(char *av){
-	//trim
+	int nd = 0, nop = 0;
 	for (size_t i = 0; i < strlen(av); i++)
 	{
-		if(isdigit(av[i]) || isspace(av[i]) || isAr(av[i]) || av[i] == '\t')
+		if(isdigit(av[i]))
+		{
+			nd++;
+			continue;
+		}
+		if(isAr(av[i])){
+			nop++;
+			continue;
+		}
+		if(isspace(av[i]) || av[i] == '\t')
 			continue;
 		else
 			throw std::runtime_error("Error");
 	}
+
+	if(nop + 1 != nd)
+		throw std::runtime_error("Error");
 
 }
 
