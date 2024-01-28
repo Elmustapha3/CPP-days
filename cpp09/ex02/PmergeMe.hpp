@@ -2,12 +2,10 @@
 #define PMERGEME_HPP
 
 #include <iostream>
-#include <cstring>
 #include <deque>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#include <cctype>
 
 
 class PmergeMe {
@@ -20,6 +18,42 @@ class PmergeMe {
 		PmergeMe& operator=(const PmergeMe& pm);
 		~PmergeMe();
 		void FordJohnsonAlgo(int ac, char **av);
+		template <typename container>
+		void algoStart(container &c, char cc){
+			typename container::iterator it;
+			typename container::iterator ite;
+			container c1;
+			container c2;
+			int a, b, i = 0;
+			it = c.begin();
+			for (; it < c.end(); it++, i++)
+			{
+				if(i % 2 == 0)
+					a = *it;
+				else if(i % 2 == 1){
+					b = *it;
+					c1.push_back(a);
+					c2.push_back(b);
+					a = -1;
+					b = -1;
+				}
+			}
+			if (a > -1){
+				c1.push_back(a);
+			}
+			this->mergeSort(c1);
+			it = c2.begin();
+			for (; it < c2.end(); it++)
+			{
+				ite = lower_bound(c1.begin(), c1.end(), *it);
+				c1.insert(ite, *it);
+			}
+			if(cc == 'v')
+				this->v.assign(c1.begin(), c1.end());
+			if(cc == 'd')
+				this->d.assign(c1.begin(), c1.end());
+		};
+
 		template <typename container>
 		void mergeSort(container &v){
 
@@ -88,29 +122,15 @@ class PmergeMe {
 		template <typename container>
 		void afficheResult(int p, container &v){
 			typename container::iterator it;
-			int i = 0;
 			it = v.begin();
 			if(p == 1)
 				std::cout << "After: ";
 			if(p == 0)
 				std::cout << "Before:";
-			if(v.size() > 5)
+
+			for (; it < v.end(); it++)
 			{
-				for (; it < v.end(); it++)
-				{
-					if(i == 4){
-						std::cout << " [...]";
-						break;
-					}
-					std::cout << " " << *it;
-					i++;
-				}
-			}
-			else{
-				for (; it < v.end(); it++)
-				{
-					std::cout << " " << *it;
-				}
+				std::cout << " " << *it;
 			}
 			std::cout << std::endl;
 		};

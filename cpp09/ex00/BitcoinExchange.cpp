@@ -105,7 +105,7 @@ void checkKey(std::string& key){
 		throw std::runtime_error("Error : invalid month");
 	if(year > 2022 || year < 2009)
 		throw std::runtime_error("Error : invalid year");
-	if((year % 4 == 0 || (year % 400 == 0 && year % 100 == 0)) && (day > 28 || day < 1)){
+	if((year % 4 == 0 || (year % 400 == 0 && year % 100 == 0)) && month == 2 && (day > 28 || day < 1)){
 		throw std::runtime_error("Error : invalid day");
 	}
 	else if(day > m[month - 1] || day < 1)
@@ -145,10 +145,10 @@ void BitcoinExchange::parser(std::string &line){
 	{
 		if(i == 4|| i == 7){
 			if(line[i] != '-')
-				throw std::runtime_error("invalid date format 1");
+				throw std::runtime_error("invalid date format");
 		}
 		else if(!isdigit(line[i])){
-			throw std::runtime_error("invalid date format 2");
+			throw std::runtime_error("invalid date format");
 		}
 	}
 
@@ -164,9 +164,14 @@ void BitcoinExchange::parser(std::string &line){
 	}
 	i++;
 
+	if(!(line.c_str())[i])
+		throw std::runtime_error("invalid format");
+
+
 	while (line[i++])
 		if(line[i] != ' ')
 			break;
+	// std::cout << "------------" << line[i] << std::endl;
 	if(line[i] == '-'){
 		throw std::runtime_error("Error: not a positive number.");
 	}
@@ -176,12 +181,16 @@ void BitcoinExchange::parser(std::string &line){
 	{
 		if(line[i] == '.')
 			throw std::runtime_error("invalid format");
-		if(line[j] == '.')
+		if(line[j] == '.'){
+			if(!(line.c_str())[j + 1])
+				throw std::runtime_error("invalid format");
 			break;
+		}
 		if(!isdigit(line[j]))
 			throw std::runtime_error("invalid format");
 	}
 	i = j + 1;
+
 	for (j = i; j < line.length(); j++)
 	{
 		if(!isdigit(line[j])){

@@ -9,13 +9,12 @@ PmergeMe::PmergeMe(int ac, char **av){
 		this->parser_and_fill(ac, av);
 		this->afficheResult<std::vector<int> >(0, this->v);
 		s_v = clock();
-		this->mergeSort<std::vector<int> >(this->v);
+		this->algoStart<std::vector<int> >(this->v, 'v');
 		e_v = clock();
 		s_d = clock();
-		this->mergeSort<std::deque<int> >(this->d);
+		this->algoStart<std::deque<int> >(this->d, 'd');
 		e_d = clock();
 		this->afficheResult<std::vector<int> >(1, this->v);
-
 		std::cout << "Time to process a range of " << this->v.size() << " elements with vector: " << static_cast<double>(e_v - s_v) << " us" << std::endl;
 		std::cout << "Time to process a range of " << this->v.size() << " elements with deque:  " << static_cast<double>(e_d - s_d) << " us" << std::endl;
 	}
@@ -44,10 +43,10 @@ void PmergeMe::FordJohnsonAlgo(int ac, char **av){
 		this->parser_and_fill(ac, av);
 		this->afficheResult<std::vector<int> >(0, this->v);
 		s_v = clock();
-		this->mergeSort<std::vector<int> >(this->v);
+		this->algoStart<std::vector<int> >(this->v, 'v');
 		e_v = clock();
 		s_d = clock();
-		this->mergeSort<std::deque<int> >(this->d);
+		this->algoStart<std::deque<int> >(this->d, 'd');
 		e_d = clock();
 		this->afficheResult<std::vector<int> >(1, this->v);
 		std::cout << "Time to process a range of " << this->v.size() << " elements with vector: " << static_cast<double>(e_v - s_v) << " us" << std::endl;
@@ -81,7 +80,9 @@ void PmergeMe::parser_and_fill(int ac, char **av){
 			this->d.push_back(0);
 		}
 		d = atof(arg.c_str());
-		if(d > 1){
+		if(d > 2147483647)
+			throw std::runtime_error("number greater than max int");
+		if(d >= 1){
 			this->v.push_back(d);
 			this->d.push_back(d);
 		}
